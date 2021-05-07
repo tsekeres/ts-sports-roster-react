@@ -1,30 +1,32 @@
 import React from 'react';
-import { Redirect, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import NotFound from '../views/NotFound';
+import Team from '../views/Team';
 import Home from '../views/Home';
+import AddPlayer from '../views/AddPlayer';
 
 export default function Routes({ user, players, setPlayers }) {
   return (
     <div>
       <Switch>
-        <Route exact path='/' component={Home} />
+        <Route exact path='/home' component={Home} />
+        <Route exact path='/not-found' component={NotFound} />
         <Route
           exact
-          path='/players'
+          path='/team'
           user={user}
-          component={() => (
-            <Players players={players} setPlayers={setPlayers} />
-          )}
+          component={() => <Team players={players} setPlayers={setPlayers} />}
         />
         <Route
           user={user}
-          path='/players/:firebaseKey'
-          component={SinglePlayer}
+          path='/team/:firebaseKey'
+          // component={SinglePlayer}
         />
         <Route
           user={user}
           path='/add-players'
-          component={() => <AddPlayer setPlayers={setPlayers} />}
+          component={AddPlayer}
         />
         <Route path='*' component={NotFound} />
       </Switch>
@@ -33,7 +35,7 @@ export default function Routes({ user, players, setPlayers }) {
 }
 
 Routes.propTypes = {
+  user: PropTypes.any,
   players: PropTypes.array.isRequired,
   setPlayers: PropTypes.func.isRequired,
-  user: PropTypes.any,
 };

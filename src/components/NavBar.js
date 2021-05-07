@@ -12,7 +12,7 @@ import {
 } from 'reactstrap';
 import { signInUser, signOutUser } from '../helpers/auth';
 
-const NavBar = () => {
+const NavBar = ({ user }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
@@ -20,13 +20,18 @@ const NavBar = () => {
   const authenticated = () => (
     <>
       <NavItem>
+        <Link className='nav-link' to='/home'>
+          Home
+        </Link>
+      </NavItem>
+      <NavItem>
         <Link className='nav-link' to='/add-player/'>
           Add Player
         </Link>
       </NavItem>
       <NavItem>
-        <Link className='nav-link' to='/players'>
-          Player Cards
+        <Link className='nav-link' to='/team'>
+          Team
         </Link>
       </NavItem>
     </>
@@ -35,7 +40,7 @@ const NavBar = () => {
   return (
     <div>
       <Navbar color='light' light expand='md'>
-        <NavbarBrand href='/'>React</NavbarBrand>
+        <NavbarBrand href='/home'>TSSports</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className='mr-auto' navbar>
