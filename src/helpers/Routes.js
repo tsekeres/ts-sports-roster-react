@@ -6,22 +6,16 @@ import Team from '../views/Team';
 import Home from '../views/Home';
 import AddPlayer from '../views/AddPlayer';
 
-export default function Routes({ user, players, setPlayers }) {
+function Routes({ user, players, setPlayers }) {
   return (
     <div>
       <Switch>
         <Route exact path='/home' component={Home} />
-        <Route exact path='/not-found' component={NotFound} />
         <Route
           exact
           path='/team'
           user={user}
           component={() => <Team players={players} setPlayers={setPlayers} />}
-        />
-        <Route
-          user={user}
-          path='/team/:firebaseKey'
-          // component={SinglePlayer}
         />
         <Route
           user={user}
@@ -39,3 +33,5 @@ Routes.propTypes = {
   players: PropTypes.array.isRequired,
   setPlayers: PropTypes.func.isRequired,
 };
+
+export default Routes;

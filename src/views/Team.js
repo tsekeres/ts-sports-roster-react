@@ -4,19 +4,17 @@ import PlayerCard from '../components/PlayerCard';
 
 function Players({ players, setPlayers }) {
   return (
-    <>
-      <div className='card-container'>
-        {players.map((playerInfo) => (
-          <PlayerCard
-            key={playerInfo.firebaseKey}
-            firebaseKey={playerInfo.firebaseKey}
-            name={playerInfo.name}
-            position={playerInfo.position}
-            setPlayers={setPlayers}
-          />
-        ))}
-      </div>
-    </>
+    <div className='card-container'>
+      {players.map((playerInfo) => (
+        <PlayerCard
+          key={playerInfo.firebaseKey}
+          firebaseKey={playerInfo.firebaseKey}
+          name={playerInfo.name}
+          position={playerInfo.position}
+          setPlayers={setPlayers}
+        />
+      ))}
+    </div>
   );
 }
 
