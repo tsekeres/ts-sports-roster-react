@@ -1,28 +1,41 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import NotFound from '../views/NotFound';
 import Team from '../views/Team';
 import Home from '../views/Home';
 import AddPlayer from '../views/AddPlayer';
 
+const PrivateRoute = ({ component: Component, user, ...rest }) => {
+  const routeChecker = (taco) => (user ? (<Component {...taco} user={user} />) : (<Redirect to={{ pathname: '/', state: { from: taco.location } }} />));
+  return <Route {...rest} render={(props) => routeChecker(props)} />;
+};
+
+PrivateRoute.propTypes = {
+  component: PropTypes.func,
+  user: PropTypes.any,
+};
 function Routes({ user, players, setPlayers }) {
   return (
     <div>
       <Switch>
-        <Route exact path='/home' component={Home} />
+        <Route exact path="/" component={Home} />
         <Route
           exact
-          path='/team'
+          path='/home'
+          component={Home} />
+        <PrivateRoute
+          exact
+          path="/team"
           user={user}
           component={() => <Team players={players} setPlayers={setPlayers} />}
         />
-        <Route
+        <PrivateRoute
+          exact
+          path="/add-players"
           user={user}
-          path='/add-players'
           component={() => <AddPlayer setPlayers={setPlayers} />}
         />
-        <Route path='*' component={NotFound} />
+        <Route path="*" component={Home} />
       </Switch>
     </div>
   );

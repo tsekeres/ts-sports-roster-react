@@ -20,11 +20,6 @@ const NavBar = ({ user }) => {
   const authenticated = () => (
     <>
       <NavItem>
-        <Link className='nav-link' to='/home'>
-          Home
-        </Link>
-      </NavItem>
-      <NavItem>
         <Link className='nav-link' to='/add-players'>
           Add Player
         </Link>
@@ -44,7 +39,7 @@ const NavBar = ({ user }) => {
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className='mr-auto' navbar>
-            {user && authenticated()}
+            { user && authenticated() }
             {user !== null && (
               <NavItem>
                 {user ? (

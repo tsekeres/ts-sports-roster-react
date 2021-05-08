@@ -3,8 +3,8 @@ import firebaseConfig from '../apiKeys';
 
 const dbURL = firebaseConfig.databaseURL;
 
-const getPlayers = () => new Promise((resolve, reject) => {
-  axios.get(`${dbURL}/players.json`)
+const getPlayers = (uid) => new Promise((resolve, reject) => {
+  axios.get(`${dbURL}/players.json?orderBy="uid"&equalTo="${uid}"`)
     .then((response) => resolve(Object.values(response.data)))
     .catch((error) => reject(error));
 });

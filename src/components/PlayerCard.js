@@ -12,7 +12,8 @@ const PlayerCard = ({
   imageUrl,
   name,
   position,
-  setPlayers
+  setPlayers,
+  user
 }) => {
   const [editing, setEditing] = useState(false);
 
@@ -41,12 +42,13 @@ const PlayerCard = ({
         <Button color="info" onClick={() => handleClick('edit')}>{editing ? 'Close Form' : 'Edit Player'}</Button>
         {
           editing && <PlayerForm
-          formTitle='Edit Student'
+          formTitle='Edit Player'
           setPlayers={setPlayers}
           firebaseKey={firebaseKey}
           imageUrl={imageUrl}
           name={name}
           position={position}
+          user={user}
           />
         }
         <Button color="danger" onClick={() => handleClick('delete')}>Cut Player</Button>
@@ -61,6 +63,7 @@ PlayerCard.propTypes = {
   name: PropTypes.string.isRequired,
   position: PropTypes.string.isRequired,
   setPlayers: PropTypes.func,
+  user: PropTypes.any
 };
 
 export default PlayerCard;

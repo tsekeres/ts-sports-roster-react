@@ -15,13 +15,16 @@ const PlayerForm = ({
   firebaseKey,
   imageUrl,
   name,
-  position
+  position,
+  user,
+  uid
 }) => {
   const [player, setPlayer] = useState({
     imageUrl: imageUrl || '',
     name: name || '',
     position: position || '',
     firebaseKey: firebaseKey || null,
+    user: uid || user.uid
   });
 
   const handleInputChange = (e) => {
@@ -33,11 +36,9 @@ const PlayerForm = ({
   const handleSubmit = (e) => {
     e.preventDefault();
     if (player.firebaseKey) {
-      editPlayer(player).then((playersArray) => setPlayers(playersArray));
+      editPlayer(player, user).then((playersArray) => setPlayers(playersArray));
     } else {
-      addPlayer(player).then((playersArray) => {
-        setPlayers(playersArray);
-      });
+      addPlayer(player, user).then((playersArray) => setPlayers(playersArray));
     }
   };
 
@@ -49,7 +50,7 @@ const PlayerForm = ({
           <Label for="imageUrl">Image URL:</Label>
           <Input
             name="imageUrl"
-            type="text"
+            type="url"
             placeholder="URL"
             value={player.imageUrl}
             onChange={handleInputChange}
@@ -88,7 +89,8 @@ PlayerForm.propTypes = {
   imageUrl: PropTypes.string,
   name: PropTypes.string,
   position: PropTypes.string,
-  user: PropTypes.any
+  user: PropTypes.any,
+  uid: PropTypes.string
 };
 
 export default PlayerForm;
