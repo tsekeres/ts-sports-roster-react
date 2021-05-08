@@ -3,7 +3,7 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import NavBar from '../components/NavBar';
 import Routes from '../helpers/Routes';
-import getPlayers from '../helpers/data/PlayerData';
+import { getPlayers } from '../helpers/data/PlayerData';
 
 function App() {
   const [players, setPlayers] = useState([]);

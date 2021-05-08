@@ -15,19 +15,18 @@ const addPlayer = (obj) => new Promise((resolve, reject) => {
       const body = { firebaseKey: response.data.name };
       axios.patch(`${dbURL}/players/${response.data.name}.json`, body)
         .then(() => {
-          getPlayers().then((playersArray) =>
-          resolve(playersArray));
+          getPlayers().then((playersArray) => resolve(playersArray));
         });
     }).catch((error) => reject(error));
 });
 
 const deletePlayer = (firebaseKey) => new Promise((resolve, reject) => {
   axios.delete(`${dbURL}/players/${firebaseKey}.json`)
-  .then(() => getPlayers().then((playersArray) => resolve(playersArray)))
-  .catch((error) => reject(error));
+    .then(() => getPlayers().then((playersArray) => resolve(playersArray)))
+    .catch((error) => reject(error));
 });
 
-const editPlayer = (player) => new Promise((response, reject) => {
+const editPlayer = (player) => new Promise((resolve, reject) => {
   axios.patch(`${dbURL}/players/${player.firebaseKey}.json`, player)
     .then(() => getPlayers().then(resolve))
     .catch((error) => reject(error));

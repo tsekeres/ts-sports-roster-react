@@ -20,7 +20,7 @@ function Routes({ user, players, setPlayers }) {
         <Route
           user={user}
           path='/add-players'
-          component={AddPlayer}
+          component={() => <AddPlayer setPlayers={setPlayers} />}
         />
         <Route path='*' component={NotFound} />
       </Switch>
