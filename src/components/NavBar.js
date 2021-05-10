@@ -61,7 +61,7 @@ const NavBar = ({ user }) => {
 };
 
 NavBar.propTypes = {
-  user: PropTypes.any,
+  user: PropTypes.any
 };
 
 export default NavBar;

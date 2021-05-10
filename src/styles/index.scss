@@ -2,5 +2,35 @@
 @import 'variables';
 
 body {
-  background-color: $favColor;
+background: #068d23 !important;
+}
+
+.user-welcome {
+  margin-top: 200px;
+  text-align: center;
+  align-items: center;
+
+  .card {
+    width: 200px;
+    margin: 5px;
+  }
+
+  .card-body {
+    flex: none;
+  }
+}
+
+.card-container {
+  display: flex;
+  flex-flow: row wrap;
+  text-align: center;
+
+  .card {
+    width: 200px;
+    margin: 5px;
+  }
+
+  .card-body {
+    flex: none;
+  }
 }

@@ -18,22 +18,20 @@ function Routes({ user, players, setPlayers }) {
   return (
     <div>
       <Switch>
-        <Route exact path="/" component={Home} />
-        <Route
-          exact
-          path='/home'
-          component={Home} />
+        <Route exact path="/" user={user} component={Home} />
         <PrivateRoute
           exact
           path="/team"
           user={user}
-          component={() => <Team players={players} setPlayers={setPlayers} />}
+          component={() => (
+            <Team user={user} players={players} setPlayers={setPlayers} />
+          )}
         />
         <PrivateRoute
           exact
           path="/add-players"
           user={user}
-          component={() => <AddPlayer setPlayers={setPlayers} />}
+          component={() => <AddPlayer user={user} setPlayers={setPlayers} />}
         />
         <Route path="*" component={Home} />
       </Switch>

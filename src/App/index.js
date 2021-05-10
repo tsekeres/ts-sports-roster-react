@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import firebase from 'firebase/app';
 import 'firebase/auth';
+import { BrowserRouter as Router } from 'react-router-dom';
 import Routes from '../helpers/Routes';
 import NavBar from '../components/NavBar';
 import { getPlayers } from '../helpers/data/PlayerData';
 
 function App() {
-  const [players, setPlayers] = useState([]);
   const [user, setUser] = useState(null);
+  const [players, setPlayers] = useState([]);
 
-  useEffect(() => {
-    getPlayers().then(setPlayers);
-  }, []);
+  // useEffect(() => {
+  //   getPlayers().then(setPlayers);
+  // }, []);
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged((authed) => {
@@ -31,14 +32,15 @@ function App() {
   }, []);
 
   return (
-    <>
-      <NavBar user={user} />
-      <Routes
-        user={user}
-        players={players}
-        setPlayers={setPlayers}
-     />
-    </>
+    <div className='App'>
+      <Router>
+        <NavBar user={user} />
+        <Routes
+          user={user}
+          players={players}
+          setPlayers={setPlayers} />
+      </Router>
+    </div>
   );
 }
 

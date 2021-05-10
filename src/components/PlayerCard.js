@@ -20,19 +20,19 @@ const PlayerCard = ({
   const handleClick = (type) => {
     switch (type) {
       case 'delete':
-        deletePlayer(firebaseKey)
+        deletePlayer(firebaseKey, user.uid)
           .then(setPlayers);
         break;
       case 'edit':
         setEditing((prevState) => !prevState);
         break;
       default:
-        console.warn('nothing selected');
+        console.warn('nothing here');
     }
   };
 
   return (
-    <Card>
+    <Card body>
       <CardImg top width="100%" src={imageUrl} alt="Card image cap" />
       <CardBody>
         <CardTitle tag="h5">{name}</CardTitle>
