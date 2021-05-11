@@ -8,7 +8,7 @@ import {
 } from 'reactstrap';
 import PropTypes from 'prop-types';
 
-const UserInfoCard = ({ user }) => (
+const UserInfoCard = ({ ...user }) => (
   <Card body>
     <CardImg top width="100%" src={user.profileImage} alt="Card image cap" />
     <CardBody>
