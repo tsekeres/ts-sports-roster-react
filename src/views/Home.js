@@ -7,7 +7,7 @@ function Home({ user }) {
     <div className="user-welcome">
       <h1>Welcome to TSSports</h1>
       <hr></hr>
-      {/* <h1>
+      <h1>
         <img
           className="user-data"
           src={user.profileImage}
@@ -15,7 +15,7 @@ function Home({ user }) {
         ></img>
         {user.fullName}
         <h4>Manager</h4>
-      </h1> */}
+      </h1>
       {/* <div className="user-data"><UserInfoCard user={user} /></div> */}
       <hr></hr>
       {user ? <h2>Your team awaits</h2> : <h2>Please Log In</h2>}
